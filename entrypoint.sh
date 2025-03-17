@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
-envsubst < /etc/aprsc/aprsc.conf.template > /opt/aprsc/aprsc.conf
+envsubst < /opt/aprsc/aprsc.conf.template > /opt/aprsc/aprsc.conf
 exec "$@"

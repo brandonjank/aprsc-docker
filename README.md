@@ -4,7 +4,7 @@ This repo builds and runs APRSC (an APRS-IS server for core servers) on Debian 1
 
 ## Features
 
-- **Build APRSC from source** on Debian 13 Bookworm Slim.
+- **Build APRSC from source** on Debian 12 Bookworm Slim.
 - **Configure APRSC dynamically** by setting environment variables.
 - **Easy deployment** with Docker & docker-compose.
 

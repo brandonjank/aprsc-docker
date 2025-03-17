@@ -1,0 +1,30 @@
+# Configuration template for aprsc, an APRS-IS server for core servers
+
+ServerId   ${APRSC_SERVERID:-NOCALL}
+PassCode   ${APRSC_PASSCODE:-0}
+MyAdmin    "${APRSC_MYADMIN:-My Name, MYCALL}"
+MyEmail    ${APRSC_MYEMAIL:-email@example.com}
+
+RunDir ${APRSC_RUNDIR:-data}
+
+LogRotate ${APRSC_LOGROTATE_SIZE:-10} ${APRSC_LOGROTATE_COUNT:-5}
+
+UpstreamTimeout		${APRSC_UPSTREAM_TIMEOUT:-15s}
+ClientTimeout		${APRSC_CLIENT_TIMEOUT:-48h}
+
+Listen ${APRSC_LISTEN_FULLFEED_NAME:-"Full feed"}      fullfeed tcp ${APRSC_LISTEN_FULLFEED_ADDR:-::}  ${APRSC_LISTEN_FULLFEED_PORT:-10152} ${APRSC_LISTEN_FULLFEED_OPTIONS:-hidden}
+Listen ${APRSC_LISTEN_FULLFEED_UDP_NAME:-""}           fullfeed udp ${APRSC_LISTEN_FULLFEED_UDP_ADDR:-::}  ${APRSC_LISTEN_FULLFEED_UDP_PORT:-10152} ${APRSC_LISTEN_FULLFEED_UDP_OPTIONS:-hidden}
+Listen ${APRSC_LISTEN_IGATE_NAME:-"Client-Defined Filters"} igate tcp ${APRSC_LISTEN_IGATE_ADDR:-::}  ${APRSC_LISTEN_IGATE_PORT:-14580}
+Listen ${APRSC_LISTEN_IGATE_UDP_NAME:-""}              igate udp ${APRSC_LISTEN_IGATE_UDP_ADDR:-::}  ${APRSC_LISTEN_IGATE_UDP_PORT:-14580}
+Listen ${APRSC_LISTEN_UDPSUBMIT_NAME:-"UDP submit"}   udpsubmit udp ${APRSC_LISTEN_UDPSUBMIT_ADDR:-::} ${APRSC_LISTEN_UDPSUBMIT_PORT:-8080}
+
+Uplink "${APRSC_UPLINK_NAME:-Core rotate}" ${APRSC_UPLINK_TYPE:-full}  tcp  ${APRSC_UPLINK_ADDR:-rotate.aprs.net} ${APRSC_UPLINK_PORT:-10152}
+
+# OPTIONAL: Bind source address before connecting to an uplink (uncomment if needed)
+UplinkBind ${APRSC_UPLINK_BIND_IPV4:-127.0.0.1}
+UplinkBind ${APRSC_UPLINK_BIND_IPV6:-::1}
+
+HTTPStatus ${APRSC_HTTPSTATUS_ADDR:-0.0.0.0} ${APRSC_HTTPSTATUS_PORT:-14501}
+HTTPUpload ${APRSC_HTTPUPLOAD_ADDR:-0.0.0.0} ${APRSC_HTTPUPLOAD_PORT:-8080}
+
+FileLimit        ${APRSC_FILELIMIT:-10000}

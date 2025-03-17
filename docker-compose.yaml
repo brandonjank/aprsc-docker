@@ -1,0 +1,54 @@
+version: '3'
+services:
+  aprsc:
+    build: .
+    container_name: aprsc
+    ports:
+      - "10152:10152"          # Fullfeed TCP
+      - "10152:10152/udp"       # Fullfeed UDP
+      - "14580:14580"          # Igate TCP
+      - "14580:14580/udp"       # Igate UDP
+      - "8080:8080/udp"         # UDP Submit
+      - "14501:14501"          # HTTP Status
+      - "8080:8080"            # HTTP Upload
+    environment:
+      APRSC_SERVERID: "NOCALL"
+      APRSC_PASSCODE: "0"
+      APRSC_MYADMIN: "My Name, MYCALL"
+      APRSC_MYEMAIL: "email@example.com"
+      APRSC_RUNDIR: "data"
+      APRSC_LOGROTATE_SIZE: "10"
+      APRSC_LOGROTATE_COUNT: "5"
+      APRSC_UPSTREAM_TIMEOUT: "15s"
+      APRSC_CLIENT_TIMEOUT: "48h"
+      APRSC_LISTEN_FULLFEED_NAME: "Full feed"
+      APRSC_LISTEN_FULLFEED_ADDR: "::"
+      APRSC_LISTEN_FULLFEED_PORT: "10152"
+      APRSC_LISTEN_FULLFEED_OPTIONS: "hidden"
+      APRSC_LISTEN_FULLFEED_UDP_NAME: ""
+      APRSC_LISTEN_FULLFEED_UDP_ADDR: "::"
+      APRSC_LISTEN_FULLFEED_UDP_PORT: "10152"
+      APRSC_LISTEN_FULLFEED_UDP_OPTIONS: "hidden"
+      APRSC_LISTEN_IGATE_NAME: "Client-Defined Filters"
+      APRSC_LISTEN_IGATE_ADDR: "::"
+      APRSC_LISTEN_IGATE_PORT: "14580"
+      APRSC_LISTEN_IGATE_UDP_NAME: ""
+      APRSC_LISTEN_IGATE_UDP_ADDR: "::"
+      APRSC_LISTEN_IGATE_UDP_PORT: "14580"
+      APRSC_LISTEN_UDPSUBMIT_NAME: "UDP submit"
+      APRSC_LISTEN_UDPSUBMIT_ADDR: "::"
+      APRSC_LISTEN_UDPSUBMIT_PORT: "8080"
+      APRSC_UPLINK_NAME: "Core rotate"
+      APRSC_UPLINK_TYPE: "full"
+      APRSC_UPLINK_ADDR: "rotate.aprs.net"
+      APRSC_UPLINK_PORT: "10152"
+      APRSC_UPLINK_BIND_IPV4: "127.0.0.1"
+      APRSC_UPLINK_BIND_IPV6: "::1"
+      APRSC_HTTPSTATUS_ADDR: "0.0.0.0"
+      APRSC_HTTPSTATUS_PORT: "14501"
+      APRSC_HTTPUPLOAD_ADDR: "0.0.0.0"
+      APRSC_HTTPUPLOAD_PORT: "8080"
+      APRSC_FILELIMIT: "10000"
+    volumes:
+      - ./aprsc:/opt/aprsc:rw
+    restart: unless-stopped

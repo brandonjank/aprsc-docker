@@ -50,6 +50,7 @@ services:
       APRSC_HTTPUPLOAD_PORT: "8080"
       APRSC_FILELIMIT: "10000"
     volumes:
+      - ./aprsc/aprsc.conf:/opt/arpsc/etc/aprsc.conf
       - ./aprsc/logs:/opt/aprsc/logs
       - ./aprsc/data:/opt/aprsc/data
     restart: unless-stopped

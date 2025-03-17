@@ -15,12 +15,15 @@ This repo builds and runs APRSC (an APRS-IS server for core servers) on Debian 1
 - **entrypoint.sh**: Uses `envsubst` to convert the config template into the active configuration.
 - **aprsc.conf.template**: APRSC config with placeholders for environment variables.
 
+## Docker Hub Images
+https://hub.docker.com/repository/docker/backburn/aprsc-docker
+
 ## Setup
 
 1. **Clone the repo:**
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone git@github.com:brandonjank/aprsc-docker.git
+   cd aprsc-docker
    ```
 
 2. **Customize** any environment variables in `docker-compose.yaml` as needed.

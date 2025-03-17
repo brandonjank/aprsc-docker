@@ -1,7 +1,7 @@
 FROM debian:bookworm-slim
 
 # Install requirements
-RUN apt-get update && apt-get install -y gnupg
+RUN apt-get update && apt-get upgrade -y && apt-get install -y gnupg
 
 # Install aprsc from the official repository
 RUN gpg --keyserver keyserver.ubuntu.com --recv-keys C51AA22389B5B74C3896EF3CA72A581E657A2B8D && \

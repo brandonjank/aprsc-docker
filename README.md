@@ -1,10 +1,10 @@
 # APRSC Docker Container
 
-This repo builds and runs APRSC (an APRS-IS server for core servers) on Debian 13 Bookworm Slim using docker and docker-compose. It supports dynamic configuration via environment variables.
+This repo builds and runs APRSC (an APRS-IS server for core servers) on Debian 12 Bookworm Slim using docker and docker-compose. It supports dynamic configuration via environment variables.
 
 ## Features
 
-- **Build APRSC from source** on Debian 13 Bookworm Slim.
+- **Build APRSC from source** on Debian 12 Bookworm Slim.
 - **Configure APRSC dynamically** by setting environment variables.
 - **Easy deployment** with Docker & docker-compose.
 

@@ -50,7 +50,8 @@ services:
       APRSC_HTTPUPLOAD_PORT: "8080"
       APRSC_FILELIMIT: "10000"
     volumes:
-      - ./aprsc:/opt/aprsc:rw
+      - ./aprsc/logs:/opt/aprsc/logs
+      - ./aprsc/data:/opt/aprsc/data
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:14501"]

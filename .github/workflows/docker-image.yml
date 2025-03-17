@@ -26,15 +26,3 @@ jobs:
         docker push ${{ secrets.DOCKER_USERNAME }}/aprsc-docker:$(date +%s)
     - name: Logout from Docker Hub
       run: docker logout
-    - name: Cleanup Docker images 
-      run: |
-        docker rmi aprsc-docker:$(date +%s) || true
-        docker rmi ${{ secrets.DOCKER_USERNAME }}/aprsc-docker:latest || true
-        docker rmi ${{ secrets.DOCKER_USERNAME }}/aprsc-docker:$(date +%s) || true
-        docker system prune -f --volumes || true
-        docker image prune -f || true
-        docker container prune -f || true
-        docker network prune -f || true
-        docker volume prune -f || true
-        docker builder prune -f || true
-        docker system df -v || true

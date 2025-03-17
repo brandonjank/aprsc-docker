@@ -15,8 +15,50 @@ This repo builds and runs APRSC (an APRS-IS server for core servers) on Debian 1
 - **entrypoint.sh**: Uses `envsubst` to convert the config template into the active configuration.
 - **aprsc.conf.template**: APRSC config with placeholders for environment variables.
 
-## Docker Hub Images
+## Using the Docker Hub Image
+
+If you prefer not to build from source, you can use the pre-built image available on Docker Hub:
 https://hub.docker.com/repository/docker/backburn/aprsc-docker
+
+```bash
+docker pull backburn/aprsc-docker:latest
+docker run -d \
+  --name aprsc \
+  -p 10152:10152 \
+  -p 10152:10152/udp \
+  -p 14580:14580 \
+  -p 14580:14580/udp \
+  -p 8080:8080 \
+  -p 8080:8080/udp \
+  -p 14501:14501 \
+  -e APRSC_SERVERID="NOCALL" \
+  -e APRSC_PASSCODE="0" \
+  -e APRSC_MYADMIN="My Name, MYCALL" \
+  -e APRSC_MYEMAIL="email@example.com" \
+  -e APRSC_LISTEN_FULLFEED_NAME="Full feed" \
+  -e APRSC_LISTEN_FULLFEED_ADDR="::" \
+  -e APRSC_LISTEN_FULLFEED_PORT="10152" \
+  -e APRSC_LISTEN_FULLFEED_OPTIONS="hidden" \
+  -e APRSC_LISTEN_FULLFEED_UDP_PORT="10152" \
+  -e APRSC_LISTEN_FULLFEED_UDP_OPTIONS="hidden" \
+  -e APRSC_LISTEN_IGATE_NAME="Client-Defined Filters" \
+  -e APRSC_LISTEN_IGATE_ADDR="::" \
+  -e APRSC_LISTEN_IGATE_PORT="14580" \
+  -e APRSC_LISTEN_IGATE_UDP_PORT="14580" \
+  -e APRSC_LISTEN_UDPSUBMIT_NAME="UDP submit" \
+  -e APRSC_LISTEN_UDPSUBMIT_PORT="8080" \
+  -e APRSC_UPLINK_NAME="Core rotate" \
+  -e APRSC_UPLINK_TYPE="full" \
+  -e APRSC_UPLINK_ADDR="rotate.aprs.net" \
+  -e APRSC_UPLINK_PORT="10152" \
+  -e APRSC_UPLINK_BIND_IPV4="127.0.0.1" \
+  -e APRSC_UPLINK_BIND_IPV6="::1" \
+  -e APRSC_HTTPSTATUS_ADDR="0.0.0.0" \
+  -e APRSC_HTTPSTATUS_PORT="14501" \
+  -e APRSC_HTTPUPLOAD_ADDR="0.0.0.0" \
+  -e APRSC_HTTPUPLOAD_PORT="8080" \
+  backburn/aprsc-docker:latest
+```
 
 ## Setup
 

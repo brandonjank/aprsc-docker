@@ -15,6 +15,8 @@ RUN gpg --keyserver keyserver.ubuntu.com --recv-keys C51AA22389B5B74C3896EF3CA72
 # Create config directory and copy the template config file
 # The config file will be generated at runtime by replacing the environment variables in the template
 RUN mkdir -p /opt/aprsc
+RUN mkdir -p /opt/aprsc/logs
+RUN mkdir -p /opt/aprsc/data
 COPY aprsc.conf.template /opt/aprsc/aprsc.conf.template
 
 # Simple entrypoint to replace environment vars in template
